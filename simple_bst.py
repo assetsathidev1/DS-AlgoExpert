@@ -66,6 +66,13 @@ class TreeNode:
                 return self.right.is_exists(value)
             else:
                 return False
+    
+    def remove(self, value):
+        """
+        function to remove an element from a bst
+        to-do: learn and implement
+        """
+        pass
 
 tree = TreeNode(11)
 tree.insert(5)
