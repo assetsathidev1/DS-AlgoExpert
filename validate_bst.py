@@ -9,7 +9,7 @@ class BST:
         self.left = None
         self.right = None
 
-
+# o(n) in time | o(d) in space
 def validateBst(tree, min_val=-999999, max_val=999999):
     # Write your code here.    
     if tree is None:
