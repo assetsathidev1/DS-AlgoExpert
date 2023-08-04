@@ -108,27 +108,51 @@ class TreeNode:
         while current_node.left is not None:
             current_node = current_node.left
         return current_node.value
+    
+    # def find_max_height(self):
+    #     if self.left is None and self.right is None:
+    #         return 0
+    #     elif self.left is None:
+    #         return 1 + self.right.find_max_height()
+    #     elif self.right is None:
+    #         return 1 + self.left.find_max_height()
+    #     else:
+    #         return 1 + max(self.left.find_max_height(), self.right.find_max_height())
+    
+    def find_max_height(self):
+        if self.left is None and self.right is None:
+            return 0
+        ld = 0
+        rd = 0
+        if self.left:
+            ld = 1 + self.left.find_max_height()
+        if self.right:
+            rd = 1 + self.right.find_max_height()
+        return ld if ld > rd else rd
 
 
-tree = TreeNode(10)
+tree = TreeNode(11)
 tree.insert(5)
-tree.insert(15)
-tree.insert(2)
+tree.insert(19)
+tree.insert(3)
 tree.insert(1)
-tree.insert(5)
+tree.insert(4)
 tree.insert(7)
-tree.insert(22)
-# tree.insert(3)
-# tree.insert(4)
-# tree.insert(1)
-# tree.insert(17)
-# tree.insert(16)
+tree.insert(8)
+tree.insert(9)
+tree.insert(17)
+tree.insert(16)
+tree.insert(20)
+tree.insert(21)
+tree.insert(27)
+print(tree.right.right.right.right)
+print(tree.find_max_height())
 
 
 # print(tree.find_min_value())
 # print(tree.left.left.left)
 # tree.inorder_traversal()
-tree.preorder_traversal()
+# tree.preorder_traversal()
 # tree.postorder_traversal()
 # print(tree.is_exists(16))
 # print("------ rem ----")
