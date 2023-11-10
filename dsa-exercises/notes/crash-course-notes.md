@@ -41,3 +41,47 @@
     - $O(n!)$ - Factorial time/Space  (ex: travelling salesman problem)
 - Big O notation is used to describe the **worst case** time and space complexities of an algorithm.
 - $O(log(n))$ Logarithmic complexity intuation: Am i halfing the number of elements i need to check at every step; OR as my input size doubles am i only increasing the number of steps by 1.
+
+## Data Structures
+
+### Stacks and Queues
+- Stacks and Queues are abstract data types. They are not built into the language.
+- Stacks are a list of elements that follow Last In First Out (LIFO) order
+- Queues are a list of elements that follow First In First Out (FIFO) order
+- Stacks can be implemented using dynamic arrays or linked lists.
+- Queues can be implemented using doubly linked lists.
+- Constant Space Time for push/pop and enqueue/dequeue operations.
+- Search for element in both takes $O(N)$ time complexity and $O(1)$ space complexity.
+- Peek operation takes $O(1)$ time complexity and $O(1)$ space complexity.
+
+### Strings
+- Strings are immutable in Java, Python, JS etc. This means that once a string is created, it cannot be changed.
+- So any additions or deletions to a string will create a new string. Hence is a more expensive operation than usual array operations.
+- Strings are saved in memory as an array of characters.
+- `ASCII` is a character encoding standard that uses 7 bits to represent each character. This means that there are 128 characters that can be represented using `ASCII`.
+- `Unicode` is a character encoding standard that uses 16 bits to represent each character. This means that there are 65536 characters that can be represented using `Unicode`.
+- Traverse is going to be $O(N)$ time complexity, where N is the length of the string.
+- Copy string is going to be $O(N)$ space time complexity, where N is the length of the string.
+- Concatenation of 2 strings is going to be $O(N+M)$ time complexity
+- `C++` strings are mutable, so they can be changed in place.
+- `KMP (Knuth-Morris-Pratt) algo` is used to find a substring in a string in linear time.
+
+### Graphs
+- A graph is a collection of nodes and edges. Nodes are also called vertices. Edges are also called links.
+- Graphs can be directed or undirected. In a directed graph, the edges have a direction associated with them. In an undirected graph, the edges do not have a direction associated with them.
+- Graphs can have cycles or no cycles. A cycle is a path that starts and ends at the same node.
+- Its important to note vertices previously visited in order to not get stuck in infite loops, while traversing cyclical graphs
+- Saved in memory as an adjacency list or an adjacency matrix.
+- Space complexity for storing a graph is $O(V+E)$
+- Traversal of a graph is done using Breadth First Search or Depth First Search.
+- Time complexity of traversal is $O(V+E)$
+
+### Trees
+- Tree is a type of a graph. A tree is a connected graph with no cycles, a fixed root node and a heirarchical/directed structure. No cycles means that there is only one path from the root node to any other node in the tree.
+- K-ary tree is a tree where each node has at most K children. Binary tree is a tree where each node has at most 2 children.
+- There are trees that satisy spl conditions which are used in various ways. Example: BST, Trie etc.
+- A tree is full if every node has either 0 or K children. A tree is complete if every level except the last level is full and the last level is filled from left to right.
+- A complete binary tree is a binary tree where every level except the last level is full and the last level is filled from left to right.
+- A heap is a complete binary tree that also satisfies the heap property. A heap is a tree where the value of the parent node is greater than or equal to the value of the child nodes.
+- Min Heap is a heap where the value of the parent node is less than or equal to the value of the child nodes. 
+- Max Heap is a heap where the value of the parent node is greater than or equal to the value of the child nodes.
