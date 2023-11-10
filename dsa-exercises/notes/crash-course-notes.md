@@ -27,3 +27,17 @@
 - Each memory slot (say 1 byte) can store 1 byte of information. This byte could represnet an actual number or a character or a boolean value OR **a pointer** to another memory location.
 - Each memory slot has an address associated with it. This address is called the `pointer` to that memory location. The address itself is a binary number.
 - Accessing any memory location is done in constant time, considered a very cheap operation.
+
+### Big O Notation
+- This notation is used to describe the time and space complexities of an algorithm.
+- Common complexities are as follows (listed in the order of increasing complexity):
+    - $O(1)$ - Constant time/Space  (ex: accessing an array element)
+    - $O(log(n))$ - Logarithmic time/Space  (ex: binary search)
+    - $O(n)$ - Linear time/Space  (ex: linear search)
+    - $O(nlog(n))$ - Log Linear OR Linearithmic time/Space  (ex: merge sort)
+    - $O(n^2)$ - Quadratic time/Space (ex: pairwise comparison)
+    - $O(n^3)$ - Cubic time/Space  (ex: 3 nested loops)
+    - $O(2^n)$ - Exponential time/Space  (ex: recursive fibonacci)
+    - $O(n!)$ - Factorial time/Space  (ex: travelling salesman problem)
+- Big O notation is used to describe the **worst case** time and space complexities of an algorithm.
+- $O(log(n))$ Logarithmic complexity intuation: Am i halfing the number of elements i need to check at every step; OR as my input size doubles am i only increasing the number of steps by 1.
