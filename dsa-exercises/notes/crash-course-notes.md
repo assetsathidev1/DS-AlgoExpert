@@ -44,6 +44,63 @@
 
 ## Data Structures
 
+### Arrays
+- Arrays are a collection of elements of the same data type with contiguous memory allocation. Starting with index 0
+- The complexity for standard operations are as follows:
+    - Accessing an element at a given index: $O(1)$
+    - Updating an element at a given index: $O(1)$
+    - Inserting an element at a given index: $O(N)$
+    - Deleting an element at a given index: $O(N)$
+    - Searching for an element: $O(N)$
+    - Copying an array: $O(N)$
+- Arrays can be Static or Dynamic. Static arrays have a fixed size, while dynamic arrays can grow in size.
+- Dynamic arrays are implemented using static arrays. When the dynamic array is full, a new static array is created with double the size of the previous array and all the elements are copied to the new array.
+- The complexity for standard operations for dynamic arrays are as follows:
+    - Accessing an element at a given index: $O(1)$
+    - Updating an element at a given index: $O(1)$
+    - Inserting an element at the end of the array: $O(1)$
+    - Inserting an element at a given index: $O(N)$
+    - Deleting an element at a given index: $O(N)$
+    - Searching for an element: $O(N)$
+    - Copying an array: $O(N)$
+
+### Linked Lists
+- Linked Lists are a collection of elements of the same data type with non-contiguous memory allocation.
+- LLs are implemented using nodes. Each node has a value and a pointer to the next node.
+- The obvious issue with array, is the requirement of contiguous memory allocation. This is solved by LLs.
+- Typcally we have a head node and a tail node. The head node is the first node in the LL and the tail node is the last node in the LL.
+- The complexity for standard operations are as follows:
+    - Accessing an element at Head node: $O(1)$
+    - Accessing an element at Tail node: $O(N)$
+    - Accessing an element at a given index: $O(N)$
+    - Insert / Remove element at Head: $O(1)$
+    - Insert / Remove element at Tail: $O(N)$
+    - Searching for an element: $O(N)$
+- Doubly Linked Lists are a type of LLs where each node has a pointer to the previous node as well as the next node.
+- The complexity for standard operations for DLLs are as follows:
+    - Accessing an element at Head node: $O(1)$
+    - Accessing an element at Tail node: $O(1)$
+    - Accessing an element at a given index: $O(N)$
+    - Insert / Remove element at Head: $O(1)$
+    - Insert / Remove element at Tail: $O(1)$
+    - Searching for an element: $O(N)$
+- Circular Linked Lists are a type of LLs where the tail node points to the head node.
+
+### Hash Tables
+- Hash Tables are a collection of elements with non-contiguous memory allocation.
+- Hash Tables are implemented using an array of buckets. Each bucket is a linked list.
+- Hash Tables are used to store key-value pairs.
+- The key is hashed to get an index. The value is stored in the bucket at that index.
+- The complexity for standard operations are as follows:
+    - Inserting an element: $O(1)$ , worst case $O(N)$
+    - Updating an element: $O(1)$ , worst case $O(N)$
+    - Deleting an element: $O(1)$ , worst case $O(N)$
+    - Searching for an element: $O(1)$ , worst case $O(N)$
+    - Storing all the elements: $O(N)$ in time and space complexity
+- Collisions occur when 2 keys are hashed to the same index. This is solved by using a linked list at each bucket.
+- Hashing functions are gotten very good at distributing the keys evenly across the buckets.
+- Resizing the number of buckets is done when the load factor (ratio of number of elements to number of buckets) is greater than a certain threshold.
+
 ### Stacks and Queues
 - Stacks and Queues are abstract data types. They are not built into the language.
 - Stacks are a list of elements that follow Last In First Out (LIFO) order
