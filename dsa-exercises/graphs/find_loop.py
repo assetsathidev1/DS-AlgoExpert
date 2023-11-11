@@ -12,6 +12,7 @@ input edges:
 ]
 
 output: true
+tt: 35min, spend more time coz implemented dfs and bfs
 """
 
 # def check_loop_with_bfs(start_index, edges):
