@@ -28,3 +28,12 @@
     12. A Binary assumption is made that a word is either present or not present in a msg. This is called `Bernoulli` assumption. AKA `Bernoulli Distribution` AKA `Binomial` .
     13. And sometimes, it is assumed that a word can occur multiple times in a msg. This is called `Multinomial` assumption.
 
+- Model Performance
+    1. Validation Set is used to tune the model parameters.
+    2. ROC Curve is a plot of True Positive Rate (TPR) vs False Positive Rate (FPR).
+    3. AUC is the area under the ROC curve.
+    4. AUC is a good metric to evaluate the model performance and decide which model to choose.
+    5. Cross validation can happen in 2 ways, `K-Fold` and `Hold Out`.
+    6. `K-Fold` is where the data is divided into K parts and each part is used as a validation set and the rest of the data is used as training set. This is repeated K times and the average of the K results is taken.
+
+
