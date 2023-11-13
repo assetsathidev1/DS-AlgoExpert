@@ -66,3 +66,60 @@
     - Good for Sparse data
     - Good for read heavy workloads
     - Good for queries that require only few columns
+
+
+## Data Processing
+- Simplified Requirements would be:
+    - Cluster resource mgmt (CPU, RAM left etc)
+    - Computational dependency mgmt (in what order does the jobs/tasks need to run)
+    - Saving final result back to HDFS
+    - Bonus: Share the same HDFS cluster where the data resides so we can avoid network transfer
+- Solution: Apache Spark and Apache Yarn
+
+### Apache Yarn
+- Yarn (Yet another resource negotiator) has a few components: 
+- `ResourceManager` is responsible for managing the resources in the cluster. 
+    - `Scheduler` allocates cluster resources to `NodeManagers`. 
+    - `ApplicationManager` that is responsible for managing the lifecycle of the applications.
+- `Node Manager` is responsible for managing the resources on a single node. 
+    - `Container` is a resource allocation on a single node where the actual code is run
+    - Once the code run is completed the `Container` is released and the resources are freed up and this info is updated to the `ResourceManager`.
+    - Negotiates with the `ResourceManager` to get the resources for the `Container`.
+    - Reports resource usage back to the `ResourceManager`.
+- `Application Master` request for more containers or more resources with the `ResourceManager`
+- Effectively YARN abstracts the distributed resources in the cluster and makes it look like a single giant machine. 
+- This solves the cluster mgmt problem. But does not tackle the computational dependency mgmt problem.
+
+### Apache Spark
+- Spark has a few components:
+- `Driver` is responsible for managing the lifecycle of the application. 
+    - It is responsible for creating the `SparkContext` and `SparkSession`. 
+    - It is responsible for creating the `DAG` and submitting it to the `Cluster Manager`. 
+    - It is responsible for monitoring the `DAG` and reporting the status back to the user.
+    - Also Validates the data, Optimises the code and creates an `RDD DAG`  (Resilenet Distributed dataset(unit of data) - directed acyclic graph)
+- `Cluster Manager` is responsible for managing the resources in the cluster. YARN is used for this. 
+- `Executor` is responsible for running the tasks. 
+    - It is responsible for running the `Task` and reporting the status back to the `Driver`. 
+    - It is responsible for caching the data in memory and disk. 
+    - It is responsible for reading and writing the data from and to the `HDFS`. 
+- This can help in optimally using the resources in parallel and also solve our computational dependency mgmt problem. And since this can be installed on `HDFS` cluster we can avoid network transfer.
+
+- How does Spark fit with Yarn:
+    - The `Driver` is `Application Manager`
+    - The `Executors` are `Containers` on `Node Managers`
+- A single point of failure in this setup could be the `Resource Manager` and that can be solved by  `Zookeeper` by having a passive stand by `Resource Manager` and using `Zookeeper` to elect the `Active Resource Manager`.
+- `Data processing Orchestration` is the process of managing the data processing pipeline. It is responsible for managing the dependencies, scheduling the jobs, monitoring the jobs, retrying the jobs, alerting the users etc.
+- `Apache Airflow` is and example software to handle this orchestration. 
+### Apache Airflow
+- Contains a `Web Server` and a `Scheduler`.
+- `Web Server` is a flask app for showing each `DAG` and the status of each `Task` in the `DAG` and the history of the same.
+- `Scheduler`(`rabbitmq`) is responsibile for:
+    - monitoring task `run status`
+    - fetch `DAGs` from `DAG store`(usually a `s3` or a file store)
+    - sends `DAGs` to execution queue
+    - writes `DAG` run status to db(`postgres`) for history
+- `Worker`(`celery`) is responsible for:
+    - fetching `DAG` from execution queue
+    - executing `DAG` tasks
+    - writing `DAG` run status to db for history
+- This way we can handle 1000s of jobs in a scheduled automated manner.
